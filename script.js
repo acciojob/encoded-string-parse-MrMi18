@@ -1,39 +1,26 @@
 const parseCode = (str) => {
-  // your code here
-	let name = ""
-	let indL;
-	for(let i = 0 ; i<str.length ; i++){
+  
+	let res = [];
+	let isZero = false;
+	let ans = "";
+	for(let i = 0 ; i<str.length;i++){
 		if(str[i]==='0'){
-			indL = i;
-			return ;
+            isZero=true;
+           
+			res.push(ans);
+			ans=""
+		} else{
+			isZero=false;
 		}
-		name+=str[i];
-	}
-	let lname = ""
-	let indR ;
-	for(let i = str.length-1 ; i>=0 ; i--){
-		if(str[i]==='0'){
-			indR = i;
-			return ;
-		}
-		lname+=str[i];
-	}
-	let indR ;
-	let idx="";
-	for(let i = indL ; i<indR ; i++){
-		if(str[i]!=='0'){
-			
-			idx+=str[i] ;
-		}
-		
-	}
-	let obj = {
-		firstName:name,
-		lastName:lname,
-		id:idx,
-}
-	return obj;
-	
+		if(!isZero) ans+=str[i];
+    }
+   
+	res.push(ans);
+	let finalAr = res.filter((s)=> s.length>0)
+// 	 console.log(finalAr[0])
+// 	 console.log(finalAr[1])
+// 	 console.log(finalAr[2])
+	return { firstName: finalAr[0], lastName:finalAr[1], id: finalAr[2] }
 };
 
 // // Do not change the code below
